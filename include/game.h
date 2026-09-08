@@ -1,6 +1,13 @@
 #pragma once
 
 typedef enum {
+    STATE_START,
+    STATE_PLAYER_TURN,
+    STATE_DEALER_TURN,
+    STATE_ROUND_OVER,
+} GameState;
+
+typedef enum {
     RESULT_PLAYER_WIN,
     RESULT_DEALER_WIN,
     RESULT_PUSH,
