@@ -57,6 +57,7 @@ void game_run(void) {
     Hand dealer = {.owner = HAND_DEALER};
 
     GameState state = STATE_START;
+    RoundResult result = RESULT_NONE;
     int running = 1;
 
     while (running) {
