@@ -1,6 +1,7 @@
 #pragma once
 
 typedef enum {
+    STATE_MENU,
     STATE_START,
     STATE_PLAYER_TURN,
     STATE_DEALER_TURN,
