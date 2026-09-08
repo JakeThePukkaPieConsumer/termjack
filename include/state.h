@@ -14,12 +14,15 @@ typedef struct {
 GameSession *game_session_create(void);
 void game_session_destroy(GameSession *session);
 
-void game_session_start(GameSession *session, Deck *deck);
+void game_session_start_round(GameSession *session, Deck *deck);
 void game_session_reset_hands(GameSession *session);
+
+void game_session_player_hit(GameSession *session, Deck *deck);
+void game_session_player_stand(GameSession *session);
 
 void game_session_dealer_turn(GameSession *session, Deck *deck);
 
-RountOutcome game_session_evaluate(const GameSession *session);
+RoundOutcome game_session_evaluate(const GameSession *session);
 int game_session_is_player_bust(const GameSession *session);
 int game_session_is_dealer_bust(const GameSession *session);
 int game_session_player_total(const GameSession *session);
