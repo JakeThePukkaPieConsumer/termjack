@@ -19,7 +19,7 @@ int card_value(const Card *card) {
     return card->rank;
 }
 
-void card_draw(const Card *card, int y, int x) {
+void card_draw(const Card *card, int x, int y) {
     int color_pair = (card->suit == HEARTS || card->suit == DIAMONDS) ? 2 : 1;
 
     attron(COLOR_PAIR(color_pair));
