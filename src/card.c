@@ -19,10 +19,15 @@ int card_value(const Card *card) {
     return card->rank;
 }
 
-void card_draw(const Card *card, int row, int col) {
+void card_draw(const Card *card, int row, int col, int hide) {
     int color_pair = (card->suit == HEARTS || card->suit == DIAMONDS) ? 2 : 1;
 
     attron(COLOR_PAIR(color_pair));
-    mvprintw(x, y, "%s of %s", rank_names[card->rank], suit_names[card->suit]);
+
+    if (hide == 1) {
+        mvprintw(row, col, "Hidden");
+    }
+
+    mvprintw(row, col, "%s of %s", rank_names[card->rank], suit_names[card->suit]);
     attroff(COLOR_PAIR(color_pair));
 }
