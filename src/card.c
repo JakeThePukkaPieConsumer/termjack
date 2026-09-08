@@ -26,8 +26,8 @@ void card_draw(const Card *card, int row, int col, int hide) {
 
     if (hide == 1) {
         mvprintw(row, col, "Hidden");
+    } else {
+        mvprintw(row, col, "%s of %s", rank_names[card->rank], suit_names[card->suit]);
     }
-
-    mvprintw(row, col, "%s of %s", rank_names[card->rank], suit_names[card->suit]);
     attroff(COLOR_PAIR(color_pair));
 }
