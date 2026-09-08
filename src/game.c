@@ -24,8 +24,6 @@ static GameState state_start(Deck *deck, Hand *player, Hand *dealer) {
 static GameState state_player_turn(int ch, Deck *deck, Hand *player) {
     if (ch == 'a') {
         hand_add_card(player, draw_card(deck));
-        if (hand_total(player) > 21)
-            return STATE_ROUND_OVER;
     }
 
     if (ch == 's')
@@ -50,6 +48,27 @@ static GameState state_round_over(int ch, Deck *deck, Hand *player, Hand *dealer
     return STATE_ROUND_OVER;
 }
 
+static RoundOutcome evaluate_round(const Hand *player, const Hand *dealer) {
+    RoundOutcome outcome = {0};
+
+    int player_total = hand_total(player);
+    int dealer_total = hand_total(dealer);
+
+    if (player_total > 21 && dealer_total > 21) {
+        outcome.result = RESULT_PUSH;
+    } else if (player_total > 21) {
+        outcome.result = RESULT_DEALER_WIN;
+    } else if (dealer_total > 21) {
+        outcome.result = RESULT_DEALER_WIN;
+    } else if (dealer_total > player_total) {
+        outcome.result = RESULT_DEALER_WIN;
+    } else if (dealer_total < player_total) {
+        outcome.result = RESULT_PLAYER_WIN;
+    }
+
+    return outcome;
+}
+
 void game_run(void) {
     Deck deck;
 
@@ -57,7 +76,7 @@ void game_run(void) {
     Hand dealer = {.owner = HAND_DEALER};
 
     GameState state = STATE_START;
-    RoundResult result = RESULT_NONE;
+    RoundResult result = {0};
     int running = 1;
 
     while (running) {
