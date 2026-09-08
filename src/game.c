@@ -13,10 +13,10 @@ static GameState state_start(Deck *deck, Hand *player, Hand *dealer) {
     hand_clear(player);
     hand_clear(dealer);
 
-    hand_add_card(player, draw_card(deck));
-    hand_add_card(player, draw_card(deck));
-    hand_add_card(dealer, draw_card(deck));
-    hand_add_card(dealer, draw_card(deck));
+    hand_add_card(player, card_draw(deck));
+    hand_add_card(player, card_draw(deck));
+    hand_add_card(dealer, card_draw(deck));
+    hand_add_card(dealer, card_draw(deck));
 
     return STATE_PLAYER_TURN;
 }
