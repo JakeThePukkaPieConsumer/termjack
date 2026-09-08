@@ -41,7 +41,7 @@ typedef struct {
     RoundResult result;
     WinCondition win_condition;
     LossCondition loss_condition;
-    PushCondition push_condition;
+    PushCondition push_result;
 } RoundOutcome;
 
 void game_run(void);
