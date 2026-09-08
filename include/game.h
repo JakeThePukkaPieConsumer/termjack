@@ -23,10 +23,17 @@ typedef enum {
     LOSS_DOUBLE_DOWN, // Lost a double down
 } LossCondition;
 
+typedef enum {
+    PUSH_NORMAL,           // Nothing special
+    PUSH_DOUBLE_BLACKJACK, // Both naturals
+    PUSH_DOUBLE_BUST,      // Dealer & Player bust
+} PushCondition;
+
 typedef struct {
     RoundResult result;
     WinCondition win_condition;
     LossCondition loss_condition;
+    PushCondition push_condition;
 } RoundOutcome;
 
 void game_run(void);
