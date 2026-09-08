@@ -50,7 +50,7 @@ void game_run(void) {
             case STATE_ROUND_OVER: {
                 if (action == INPUT_PLAY_AGAIN) {
                     game_session_start_round(session, &deck);
-                } else if (action == INPUT_MENU || action || INPUT_QUIT) {
+                } else if (action == INPUT_MENU || action == INPUT_QUIT) {
                     in_round = 0;
                     game_session_set_state(session, STATE_START);
                 }
