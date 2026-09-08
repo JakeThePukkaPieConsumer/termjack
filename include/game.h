@@ -23,4 +23,10 @@ typedef enum {
     LOSS_DOUBLE_DOWN, // Lost a double down
 } LossCondition;
 
+typedef struct {
+    RoundResult result;
+    WinCondition win_condition;
+    LossCondition loss_condition;
+} RoundOutcome;
+
 void game_run(void);
