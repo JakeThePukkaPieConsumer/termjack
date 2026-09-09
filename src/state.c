@@ -76,6 +76,9 @@ RoundOutcome game_session_evaluate(const GameSession *session) {
     if (player_total > 21 && dealer_total > 21) {
         outcome.result = RESULT_PUSH;
         outcome.push_result = PUSH_DOUBLE_BUST;
+    } else if (player_total == dealer_total) {
+        outcome.result = RESULT_PUSH;
+        outcome.push_result = PUSH_NORMAL;
     } else if (player_total > 21) {
         outcome.result = RESULT_DEALER_WIN;
         outcome.loss_condition = LOSS_BUST;
