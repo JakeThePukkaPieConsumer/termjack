@@ -70,8 +70,9 @@ void renderer_draw_totals(int player_total, int dealer_total) {
     mvprintw(TOTALS_ROW, TOTALS_COL, "Player: %d | Dealer: %d", player_total, dealer_total);
 }
 
-void renderer_draw_game_state(const Hand *player, const Hand *dealer, GameState state) {
-    renderer_draw_dealer_hand(dealer, 0);
+void renderer_draw_game_state(const Hand *player, const Hand *dealer, GameState state,
+                              int show_hidden) {
+    renderer_draw_dealer_hand(dealer, !show_hidden);
     renderer_draw_player_hand(player);
 
     switch (state) {

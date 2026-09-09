@@ -65,9 +65,14 @@ void game_run(void) {
         if (!in_round || game_session_get_state(session) == STATE_START) {
             renderer_draw_menu();
         } else {
+            int show_hidden = (game_session_get_state(session) == STATE_DEALER_TURN ||
+                               game_session_get_state(session) == STATE_ROUND_OVER)
+                                  ? 1
+                                  : 0;
+
             renderer_draw_game_state(game_session_get_player_hand(session),
                                      game_session_get_dealer_hand(session),
-                                     game_session_get_state(session));
+                                     game_session_get_state(session), !show_hidden);
 
             if (game_session_get_state(session) == STATE_ROUND_OVER) {
                 RoundOutcome outcome = game_session_evaluate(session);
